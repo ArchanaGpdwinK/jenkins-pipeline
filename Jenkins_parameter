@@ -1,0 +1,32 @@
+pipeline {
+    agent any
+	parameters {
+  string defaultValue: 'Test', description: 'Which environment should the build need to deploy?', name: 'DEPLOY_ENV', trim: true
+}
+
+    stages {
+		stage('Build') {
+			steps {
+				sh '''
+						echo STAGE 1: "Good $DEPLOY_ENV"
+				   '''
+			}
+		}
+		
+		stage('Test') {
+			steps {
+				sh '''
+						echo STAGE 2: "Neat $DEPLOY_ENV"
+				   '''
+			}
+		}
+	
+		stage('Deploy') {
+			steps {
+				sh '''
+						echo STAGE 3: "Execellent $DEPLOY_ENV"
+				   '''
+			}
+		}
+	}
+}
